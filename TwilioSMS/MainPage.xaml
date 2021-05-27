@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="TwilioSMS.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TwilioSMS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition
+        Height="Auto" />
+        </Grid.RowDefinitions>
+        <!-- using x:Bind here just to be lazy and avoid setting datacontext -->
+        <ListView Margin="40"
+      Header="SMS messages arrived since start button was pressed"
+              ItemsSource="{x:Bind NewSmsMessages}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,8,0,0">
+                        <TextBlock
+              Text="{Binding Sid}" />
+                        <TextBlock
+              Text="{Binding Body}" />
+                        <TextBlock
+              Text="{Binding DateCreated}" />
+                        <TextBlock
+              Text="{Binding From}" />
+                        <TextBlock
+              Text="{Binding To}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel
+      Grid.Row="1"
+      HorizontalAlignment="Center"
+      Orientation="Horizontal"
+      Margin="20">
+            <Button
+        Content="Start"
+        Click="OnStartAsync"
+        Margin="8" />
+            <Button
+        Content="Stop"
+        Click="OnStopAsync"
+        Margin="8" />
+        </StackPanel>
+    </Grid>
+</Page>
